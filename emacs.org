@@ -122,31 +122,6 @@ this expression.
 #+BEGIN_SRC emacs-lisp
   (cua-mode)
 #+END_SRC
-* Magit
-Magit is what's known as a Git porcelain in Emacs. This means that
-everything you can do in the command line Git, you can do (likely
-better) in Magit.
-
-To get started, type =M-g= when you have a file open in a Git
-repository, and press =?= to list out all that you can do.
-
-#+BEGIN_SRC emacs-lisp
-  (use-package magit
-    :ensure t
-    :init
-    (global-set-key (kbd "M-g") 'magit-status))
-#+END_SRC
-* Rainbow Parentheses
-This package recolors parentheses, braces, and brackets in matching
-pairs. This makes programming, especially in Scheme, much easier (and
-prettier).
-
-#+BEGIN_SRC emacs-lisp
-  (use-package rainbow-delimiters
-    :ensure t
-    :config
-    (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
-#+END_SRC
 * Scheme Support
 ** Scheme Mode
 This tells Emacs to open any files ending in =.ss= as Scheme
@@ -170,6 +145,72 @@ few notable keybindings:
   (use-package geiser
     :ensure t
     :config (setq geiser-default-implementation 'chez))
+#+END_SRC
+* Magit
+[[https://magit.vc/][Magit]] is what's known as a Git porcelain in Emacs. This means that
+everything you can do in the command line Git, you can do (likely
+better) in Magit.
+
+To get started, type =M-g= when you have a file open in a Git
+repository, and press =?= to list out all that you can do.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package magit
+    :ensure t
+    :init
+    (global-set-key (kbd "M-g") 'magit-status))
+#+END_SRC
+* Hydra
+To quote the [[https://github.com/abo-abo/hydra][Hydra]] documentation:
+
+  Imagine that you have bound =C-c j= and C-c k in your config. You want
+  to call =C-c j= and =C-c k= in some (arbitrary) sequence. Hydra allows
+  you to:
+
+  Bind your functions in a way that pressing =C-c jjkk3j5k= is
+  equivalent to pressing =C-c j= =C-c j= =C-c k= =C-c k= =M-3 C-c j=
+  =M-5 C-c k=. Any key other than =j= or =k= exits this state.
+
+This is being used primarily for [[#paredit][Paredit]].
+
+#+BEGIN_SRC emacs-lisp
+  (use-package hydra
+    :ensure t)
+#+END_SRC
+* Paredit
+[[https://www.emacswiki.org/emacs/ParEdit][Paredit]] allows for easy editing and navigation of parentheses, and
+(most usefully) it enforces matching parentheses and valid syntax
+trees. (See [[https://www.youtube.com/watch?v=D6h5dFyyUX0][this video]] for a great demonstration.)
+
+This uses the above [[#hydra][Hydra]] package to allow for a better user
+experience.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package paredit
+    :requires hydra
+    :ensure t
+    :hook (scheme-mode . enable-paredit-mode)
+    :config
+    (defhydra hydra-paredit ()
+      ("f" paredit-forward  "Forward")
+      ("b" paredit-backward "Back")
+      ("w" paredit-wrap-round "Wrap")
+      ("u" paredit-splic-sexp "Unwrap")
+      ("r" paredit-raise-sexp "Raise")
+      ("e" paredit-forward-slurp-sexp "Expand")
+      ("c" paredit-forward-barf-sexp "Contract")
+      ("s" paredit-split-sexp "Shrink")))
+#+END_SRC
+* Rainbow Parentheses
+This package recolors parentheses, braces, and brackets in matching
+pairs. This makes programming, especially in Scheme, much easier (and
+prettier).
+
+#+BEGIN_SRC emacs-lisp
+  (use-package rainbow-delimiters
+    :ensure t
+    :config
+    (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 #+END_SRC
 * Smooth Scrolling
 This makes Emacs scroll more smoothly than it does by
