@@ -3,8 +3,7 @@ Welcome to Emacs! This config file is intended for newbies, and even
 more specifically towards people working a lot with Scheme.
 
 Since Emacs bindings are ~a lot~ a bit archaic, I've remapped some of
-the more confusing ones to more contemporary analogs in the section [[*"Modern"
- Bindings]["Modern" Bindings]].
+the more confusing ones to more contemporary analogs in the section [[#modern-bindings]["Modern" Bindings]].
 If you want, there's a setting at the top of the section to turn it
 off and use Emacs "properly."
 ** Keyboard Shortcuts Introduction
