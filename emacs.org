@@ -1,4 +1,6 @@
 * Introduction
+[[https://travis-ci.org/Lewis-Kelley/ez-macs.svg?branch=master]]
+
 Welcome to Emacs! This config file is intended for newbies, and even
 more specifically towards people working a lot with Scheme.
 
