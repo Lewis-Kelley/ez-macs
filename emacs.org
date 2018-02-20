@@ -144,7 +144,9 @@ few notable keybindings:
 #+BEGIN_SRC emacs-lisp
   (use-package geiser
     :ensure t
-    :config (setq geiser-default-implementation 'chez))
+    :custom
+    (geiser-active-implementations '(chez racket))
+    (geiser-default-implementation 'chez))
 #+END_SRC
 * Magit
 [[https://magit.vc/][Magit]] is what's known as a Git porcelain in Emacs. This means that
