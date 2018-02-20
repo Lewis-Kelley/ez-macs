@@ -4,7 +4,7 @@
 Welcome to Emacs! This config file is intended for newbies, and even
 more specifically towards people working a lot with Scheme.
 
-Since Emacs bindings are ~a lot~ a bit archaic, I've remapped some of
+Since Emacs bindings are +a lot+ a bit archaic, I've remapped some of
 the more confusing ones to more contemporary analogs in the section
 [[#modern-bindings]["Modern" Bindings]]. If instead you want to use Emacs "properly," change
 the =modern= in the code below to =emacs=.
