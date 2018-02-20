@@ -259,3 +259,11 @@ default. Normally it jumps up and down a whole page at a time.
         scroll-conservatively 10000
         scroll-preserve-screen-position 1)
 #+END_SRC
+* Lego Theme
+This is my own custom theme. If you would rather start with vanilla
+Emacs, you can comment out the line. Alternatively, use =M-x
+customize-themes= to load a different theme.
+
+#+BEGIN_SRC emacs-lisp
+  (load-theme 'lego t)
+#+END_SRC
