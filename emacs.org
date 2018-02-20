@@ -3,9 +3,17 @@ Welcome to Emacs! This config file is intended for newbies, and even
 more specifically towards people working a lot with Scheme.
 
 Since Emacs bindings are ~a lot~ a bit archaic, I've remapped some of
-the more confusing ones to more contemporary analogs in the section [[#modern-bindings]["Modern" Bindings]].
-If you want, there's a setting at the top of the section to turn it
-off and use Emacs "properly."
+the more confusing ones to more contemporary analogs in the section
+[[#modern-bindings]["Modern" Bindings]]. If instead you want to use Emacs "properly," change
+the =modern= in the code below to =emacs=.
+
+Alternatively, if you are more comfortable with Vim keybindings,
+change =modern= to =vim= and, head to the [[#evil][Evil]] section below.
+
+#+BEGIN_SRC emacs-lisp
+  ; String should be one of "modern", "emacs", or "vim"
+  (setq keybindings "modern")
+#+END_SRC
 ** Keyboard Shortcuts Introduction
 General convention for expressing keyboard shortcuts is as follows:
 - =C-= means hold the Ctrl key along with the other depicted key
@@ -116,11 +124,22 @@ have added CUA (or Common User Access) mode. In brief this remaps
 respectively as opposed to the various commands they act as by
 default. For more information, type =C-h f cua-mode=.
 
-If you want to disable this and use the default bindings, comment out
-this expression.
+If you want to disable this and use the default bindings, change the
+=keybindings= variable in the [[#introduction][introduction]].
 
 #+BEGIN_SRC emacs-lisp
-  (cua-mode)
+  (when (equalp keybindings "modern")
+    (cua-mode))
+#+END_SRC
+* Evil Mode
+[[https://github.com/emacs-evil/evil][Evil]] mode, or the "Extensible VI Layer for Emacs" makes Emacs control
+like Vim. If you can use Vim, you can use Evil mode. It's important to
+note, however, that you won't be able to use the =:= commands.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package evil
+    :ensure t
+    :init (evil-mode 1))
 #+END_SRC
 * Scheme Support
 ** Scheme Mode
@@ -185,10 +204,19 @@ This is being used primarily for [[#paredit][Paredit]].
 trees. (See [[https://www.youtube.com/watch?v=D6h5dFyyUX0][this video]] for a great demonstration.)
 
 This uses the above [[#hydra][Hydra]] package to allow for a better user
-experience.
+experience. If you don't like using paredit, edit the value below to
+be =nil= instead of =1=.
+
+#+BEGIN_SRC emacs-lisp
+  (setq use-paredit 1)
+#+END_SRC
+
+Because of some of the trickery that Evil does, paredit is disabled
+when you are using Evil mode.
 
 #+BEGIN_SRC emacs-lisp
   (use-package paredit
+    :if (and use-paredit (not (equalp keybindings "vim")))
     :requires hydra
     :ensure t
     :hook (scheme-mode . enable-paredit-mode)
