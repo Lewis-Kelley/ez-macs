@@ -1,0 +1,185 @@
+* Introduction
+Welcome to Emacs! This config file is intended for newbies, and even
+more specifically towards people working a lot with Scheme.
+
+Since Emacs bindings are ~a lot~ a bit archaic, I've remapped some of
+the more confusing ones to more contemporary analogs in the section [[*"Modern"
+ Bindings]["Modern" Bindings]].
+If you want, there's a setting at the top of the section to turn it
+off and use Emacs "properly."
+** Keyboard Shortcuts Introduction
+General convention for expressing keyboard shortcuts is as follows:
+- =C-= means hold the Ctrl key along with the other depicted key
+- =M-= means hold the Alt(*) key along with the other depicted key
+- spaces in between commands indicate you should release whatever keys
+  you were holding before for the next sequence
+
+Examples (and /really/ useful commands):
+- =C-g= :: Ctrl-g
+  + abort the current key sequence; try it with one of the later
+    examples!
+- =C-x C-c= :: Ctrl-x <release> Ctrl-c
+  + quit Emacs
+- =C-x s= :: Ctrl-x <release> s (note that you /do not/ hold down Ctrl
+             while pressing s)
+  + save all files
+- =M-x= :: Alt-x
+  + 'execute-extended-command', if you run this, you'll open a small
+    prompt at the bottom of the window (in the "minibuffer") from
+    which you can type any Emacs command you want. For example, try
+    =M-x tetris=.
+
+(*) It's =M-= because 35 years ago it was called the "Meta" key. You
+see a lot of this stuff in Emacs.
+** Installation
+If you're on Linux (or possibly Mac?) you can just clone this
+repository to your home directory with the name =.emacs.d=. Emacs
+tries to find this config file by looking for =~/.emacs.d/init.el=, so
+just make sure that this is at your home directory and with the
+correct name.
+
+Windows is weird. My recommendation is to install Emacs and run it
+without this configuration. Once you're inside, run =find-file= (=C-x
+C-f=) and type =~/.emacs.d/init.el=. Emacs knows where it /thinks/
+your home directory is on Windows, and it's almost always in a weird
+spot. I've seen it end up on the Desktop or in the AppData folder, and
+this is the easiest way to find where it is. Once you find the
+location, /then/ clone down this repo, again as =.emacs.d=, and
+everything should be good to go!
+** What Next?
+I recommend skimming through this README to see the code and what's
+going on, but if not, you can hit the ground running with =C-x C-f= to
+open a file and get editing!
+
+There are plenty of great resources for learning Emacs, most of which
+are more extensive than what is here. A good start is [[http://ergoemacs.org/emacs/emacs.html][here]].
+* What is this file?
+This an /org-mode file/ (which you can tell because it has a =.org=
+suffix). It does a lot (most of which is outside the scope of this
+explanation), but suffice it to say that it allows me to put source
+code blocks into some relatively pretty markup (that also shows up
+well on GitHub!). If you actually look at =init.el=, it's really just
+saying "load the emacs-lisp code found in =emacs.org=."
+
+I mentioned "emacs-lisp." If you want a quick history, C is to C++ as
+Lisp is to Scheme (roughly speaking). Lisp was the original, and as
+such has a few more quirks. Regardless, that means that there are
+parentheses /everywhere/ in the configuration. Just a heads
+up.
+
+Incidentally, when you want to comment something out, Lisp's comment
+character is =;=.
+
+#+BEGIN_SRC emacs-lisp
+  ;; Hello! This is a comment!
+  ;; And this is some random code:
+  (list 1 2 3)
+#+END_SRC
+* Package Repository: MELPA
+[[https://melpa.org/#/][MELPA]] is likely the largest package repositories for Emacs, and as
+such it is necessary for a few of the packages this configuration
+installs.
+
+To browse packages, use =M-x package-list-packages=. From there,
+you'll be able to install, remove, or upgrade packages as you see fit
+(for more details, see [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Package-Menu.html#Package-Menu][this page]] in the manual).
+
+I'd recommend against modifying this block unless you /really/ know
+what you're doing.
+
+#+BEGIN_SRC emacs-lisp
+  (require 'package)
+  (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                      (not (gnutls-available-p))))
+         (url (concat (if no-ssl "http" "https") "://melpa.org/packages/")))
+    (add-to-list 'package-archives (cons "melpa" url) t))
+  (when (< emacs-major-version 24)
+    (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+
+  (package-initialize)
+#+END_SRC
+* Package Manager: use-package
+[[https://github.com/jwiegley/use-package][use-package]] is just a handy macro that's useful for cleanly installing
+and configuring different packages. Trust me when I say it makes
+things easier.
+
+#+BEGIN_SRC emacs-lisp
+  (unless package-archive-contents
+    (package-refresh-contents))
+  (unless (package-installed-p 'use-package)
+    (package-install 'use-package))
+  (require 'use-package)
+#+END_SRC
+* "Modern" Bindings
+To make things a tad easier for newcomers, the kind Emacs developers
+have added CUA (or Common User Access) mode. In brief this remaps
+=C-x=, =C-c=, =C-v=, and =C-z= to cut, copy, paste, and undo
+respectively as opposed to the various commands they act as by
+default. For more information, type =C-h f cua-mode=.
+
+If you want to disable this and use the default bindings, comment out
+this expression.
+
+#+BEGIN_SRC emacs-lisp
+  (cua-mode)
+#+END_SRC
+* Magit
+Magit is what's known as a Git porcelain in Emacs. This means that
+everything you can do in the command line Git, you can do (likely
+better) in Magit.
+
+To get started, type =M-g= when you have a file open in a Git
+repository, and press =?= to list out all that you can do.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package magit
+    :ensure t
+    :init
+    (global-set-key (kbd "M-g") 'magit-status))
+#+END_SRC
+* Rainbow Parentheses
+This package recolors parentheses, braces, and brackets in matching
+pairs. This makes programming, especially in Scheme, much easier (and
+prettier).
+
+#+BEGIN_SRC emacs-lisp
+  (use-package rainbow-delimiters
+    :ensure t
+    :config
+    (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+#+END_SRC
+* Scheme Support
+** Scheme Mode
+This tells Emacs to open any files ending in =.ss= as Scheme
+files. Otherwise, it would just try to guess what kind of file it
+was.
+
+#+BEGIN_SRC emacs-lisp
+  (setq auto-mode-alist (cons '("\\.ss" . scheme-mode) auto-mode-alist))
+#+END_SRC
+** Geiser Mode
+[[https://github.com/jaor/geiser][Geiser mode]] allows for quick and easy execution of arbitrary blocks of
+Scheme code without having to switch to a REPL and load up a file. A
+few notable keybindings:
+
+| Evaluate Expression Before Point | C-x C-e   |
+| Open REPL                        | C-c C-z   |
+| Evaluate Buffer                  | C-c C-b   |
+| Macro Expand Region              | C-c C-m r |
+
+#+BEGIN_SRC emacs-lisp
+  (use-package geiser
+    :ensure t
+    :config (setq geiser-default-implementation 'chez))
+#+END_SRC
+* Smooth Scrolling
+This makes Emacs scroll more smoothly than it does by
+default. Normally it jumps up and down a whole page at a time.
+
+#+BEGIN_SRC emacs-lisp
+  (setq redisplay-dont-pause t
+        scroll-margin 3
+        scroll-step 1
+        scroll-conservatively 10000
+        scroll-preserve-screen-position 1)
+#+END_SRC
