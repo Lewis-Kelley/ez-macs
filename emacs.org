@@ -196,12 +196,15 @@ experience.
     (defhydra hydra-paredit ()
       ("f" paredit-forward  "Forward")
       ("b" paredit-backward "Back")
+      ("u" paredit-forward-up "Up")
+      ("d" paredit-backward-down "Down")
       ("w" paredit-wrap-round "Wrap")
-      ("u" paredit-splic-sexp "Unwrap")
+      ("u" paredit-splice-sexp "Unwrap")
       ("r" paredit-raise-sexp "Raise")
       ("e" paredit-forward-slurp-sexp "Expand")
       ("c" paredit-forward-barf-sexp "Contract")
-      ("s" paredit-split-sexp "Shrink")))
+      ("s" paredit-split-sexp "Shrink"))
+    (define-key paredit-mode-map (kbd "M-s") 'hydra-paredit/body))
 #+END_SRC
 * Rainbow Parentheses
 This package recolors parentheses, braces, and brackets in matching
