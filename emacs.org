@@ -136,7 +136,8 @@ If you want to disable this and use the default bindings, change the
 * Evil Mode
 [[https://github.com/emacs-evil/evil][Evil]] mode, or the "Extensible VI Layer for Emacs" makes Emacs control
 like Vim. If you can use Vim, you can use Evil mode. It's important to
-note, however, that you won't be able to use the =:= commands.
+note, however, that you won't be able to use the =:= commands. Use
+=C-z= to switch between Evil mode and more traditional Emacs bindings.
 
 #+BEGIN_SRC emacs-lisp
   (use-package evil
@@ -187,13 +188,15 @@ repository, and press =?= to list out all that you can do.
 * Hydra
 To quote the [[https://github.com/abo-abo/hydra][Hydra]] documentation:
 
-  Imagine that you have bound =C-c j= and C-c k in your config. You want
-  to call =C-c j= and =C-c k= in some (arbitrary) sequence. Hydra allows
-  you to:
+#+BEGIN_QUOTE
+Imagine that you have bound =C-c j= and =C-c k= in your config. You want
+to call =C-c j= and =C-c k= in some (arbitrary) sequence. Hydra allows
+you to:
 
-  Bind your functions in a way that pressing =C-c jjkk3j5k= is
-  equivalent to pressing =C-c j= =C-c j= =C-c k= =C-c k= =M-3 C-c j=
-  =M-5 C-c k=. Any key other than =j= or =k= exits this state.
+Bind your functions in a way that pressing =C-c jjkk3j5k= is
+equivalent to pressing =C-c j= =C-c j= =C-c k= =C-c k= =M-3 C-c j=
+=M-5 C-c k=. Any key other than =j= or =k= exits this state.
+#+END_QUOTE
 
 This is being used primarily for [[#paredit][Paredit]].
 
@@ -207,8 +210,10 @@ This is being used primarily for [[#paredit][Paredit]].
 trees. (See [[https://www.youtube.com/watch?v=D6h5dFyyUX0][this video]] for a great demonstration.)
 
 This uses the above [[#hydra][Hydra]] package to allow for a better user
-experience. If you don't like using paredit, edit the value below to
-be =nil= instead of =1=.
+experience. Press =M-s= while in a Scheme file to start!
+
+If you don't like using paredit, edit the value below to be =nil=
+instead of =1=.
 
 #+BEGIN_SRC emacs-lisp
   (setq use-paredit 1)
@@ -234,7 +239,8 @@ when you are using Evil mode.
       ("r" paredit-raise-sexp "Raise")
       ("e" paredit-forward-slurp-sexp "Expand")
       ("c" paredit-forward-barf-sexp "Contract")
-      ("s" paredit-split-sexp "Shrink"))
+      ("s" paredit-split-sexp "Shrink")
+      ("x" nil "Quit"))
     (define-key paredit-mode-map (kbd "M-s") 'hydra-paredit/body))
 #+END_SRC
 * Rainbow Parentheses
