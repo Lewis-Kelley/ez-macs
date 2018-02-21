@@ -243,6 +243,20 @@ when you are using Evil mode.
       ("x" nil "Quit"))
     (define-key paredit-mode-map (kbd "M-s") 'hydra-paredit/body))
 #+END_SRC
+* Select Whole Expression: expand-region
+[[https://github.com/magnars/expand-region.el][expand-region]] allows you to easily select a whole expression at a
+time. Try it out in a Scheme file with =M-i=!
+
+Since this is extremely similar to Vim's builtin commands, this is
+disabled when using Vim-style keybindings.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package expand-region
+    :if (not (equalp keybindings "vim"))
+    :ensure t
+    :config
+    (global-set-key (kbd "M-i") 'er/expand-region))
+#+END_SRC
 * Pretty Parentheses: Rainbow Delimiters
 [[https://github.com/Fanael/rainbow-delimiters][Rainbow Delimiters]] recolors parentheses, braces, and brackets in
 matching pairs. This makes programming, especially in Scheme, much
