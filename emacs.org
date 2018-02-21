@@ -119,7 +119,7 @@ things easier.
     (package-install 'use-package))
   (require 'use-package)
 #+END_SRC
-* "Modern" Bindings
+* "Modern" Bindings: cua-mode
 To make things a tad easier for newcomers, the kind Emacs developers
 have added CUA (or Common User Access) mode. In brief this remaps
 =C-x=, =C-c=, =C-v=, and =C-z= to cut, copy, paste, and undo
@@ -133,7 +133,7 @@ If you want to disable this and use the default bindings, change the
   (when (equalp keybindings "modern")
     (cua-mode))
 #+END_SRC
-* Evil Mode
+* Vim Keybindings: Evil Mode
 [[https://github.com/emacs-evil/evil][Evil]] mode, or the "Extensible VI Layer for Emacs" makes Emacs control
 like Vim. If you can use Vim, you can use Evil mode. It's important to
 note, however, that you won't be able to use the =:= commands. Use
@@ -146,7 +146,7 @@ note, however, that you won't be able to use the =:= commands. Use
     :init (evil-mode 1))
 #+END_SRC
 * Scheme Support
-** Scheme Mode
+** Syntax Coloring: Scheme Mode
 This tells Emacs to open any files ending in =.ss= as Scheme
 files. Otherwise, it would just try to guess what kind of file it
 was.
@@ -154,7 +154,7 @@ was.
 #+BEGIN_SRC emacs-lisp
   (setq auto-mode-alist (cons '("\\.ss" . scheme-mode) auto-mode-alist))
 #+END_SRC
-** Geiser Mode
+** Scheme Evaluation: Geiser Mode
 [[https://github.com/jaor/geiser][Geiser mode]] allows for quick and easy execution of arbitrary blocks of
 Scheme code without having to switch to a REPL and load up a file. A
 few notable keybindings:
@@ -171,7 +171,7 @@ few notable keybindings:
     (geiser-active-implementations '(chez racket))
     (geiser-default-implementation 'chez))
 #+END_SRC
-* Magit
+* Git in Emacs: Magit
 [[https://magit.vc/][Magit]] is what's known as a Git porcelain in Emacs. This means that
 everything you can do in the command line Git, you can do (likely
 better) in Magit.
@@ -185,7 +185,7 @@ repository, and press =?= to list out all that you can do.
     :init
     (global-set-key (kbd "M-g") 'magit-status))
 #+END_SRC
-* Hydra
+* Helpful Keybindings: Hydra
 To quote the [[https://github.com/abo-abo/hydra][Hydra]] documentation:
 
 #+BEGIN_QUOTE
@@ -204,7 +204,7 @@ This is being used primarily for [[#paredit][Paredit]].
   (use-package hydra
     :ensure t)
 #+END_SRC
-* Paredit
+* Move Through Parentheses: Paredit
 [[https://www.emacswiki.org/emacs/ParEdit][Paredit]] allows for easy editing and navigation of parentheses, and
 (most usefully) it enforces matching parentheses and valid syntax
 trees. (See [[https://www.youtube.com/watch?v=D6h5dFyyUX0][this video]] for a great demonstration.)
@@ -243,10 +243,10 @@ when you are using Evil mode.
       ("x" nil "Quit"))
     (define-key paredit-mode-map (kbd "M-s") 'hydra-paredit/body))
 #+END_SRC
-* Rainbow Parentheses
-This package recolors parentheses, braces, and brackets in matching
-pairs. This makes programming, especially in Scheme, much easier (and
-prettier).
+* Pretty Parentheses: Rainbow Delimiters
+[[https://github.com/Fanael/rainbow-delimiters][Rainbow Delimiters]] recolors parentheses, braces, and brackets in
+matching pairs. This makes programming, especially in Scheme, much
+easier (and prettier).
 
 #+BEGIN_SRC emacs-lisp
   (use-package rainbow-delimiters
