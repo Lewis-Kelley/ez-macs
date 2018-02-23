@@ -10,7 +10,10 @@ the more confusing ones to more contemporary analogs in the section
 the =modern= in the code below to =emacs=.
 
 Alternatively, if you are more comfortable with Vim keybindings,
-change =modern= to =vim= and, head to the [[#vim-keybindings-evil-mode][Evil]] section below.
+change =modern= to =vim=, and head to the [[#vim-keybindings-evil-mode][Evil]] section below. I'd
+encourage you to try out using Emacs as Emacs before jumping ship back
+to Vim, though; enabling Evil will disable other features of this
+config.
 
 #+BEGIN_SRC emacs-lisp
   ; String should be one of "modern", "emacs", or "vim"
