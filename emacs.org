@@ -296,3 +296,15 @@ customize-themes= to load a different theme.
 #+BEGIN_SRC emacs-lisp
   (load-theme 'lego t)
 #+END_SRC
+* Miscellaneous
+** Stop the Beeping
+Emacs often beeps when you get an error. It's kind of annoying, so
+here it's turned off.
+#+BEGIN_SRC emacs-lisp
+  (setq ring-bell-function 'ignore)
+#+END_SRC
+** Simplify Yes and No Prompts
+Some prompts ask for "Yes/No" and this just shortens that to "y/n".
+#+BEGIN_SRC emacs-lisp
+  (defalias 'yes-or-no-p 'y-or-no-p)
+#+END_SRC
