@@ -268,6 +268,15 @@ easier (and prettier).
     :config
     (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 #+END_SRC
+
+Other miscellaneous parentheses stuff:
+
+#+BEGIN_SRC emacs-lisp
+  ;; While hovering over a parenthesis, highlight its match.
+  (show-paren-mode 1)
+  ;; Time taken to highlight the matching parenthesis
+  (setq show-paren-delay 0)
+#+END_SRC
 * Smooth Scrolling
 This makes Emacs scroll more smoothly than it does by
 default. Normally it jumps up and down a whole page at a time.
