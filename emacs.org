@@ -46,20 +46,22 @@ Examples (and /really/ useful commands):
 (*) It's =M-= because 35 years ago it was called the "Meta" key. You
 see a lot of this stuff in Emacs.
 ** Installation
+Firstly, follow the installation instructions for Emacs found [[https://www.gnu.org/software/emacs/download.html][here]].
+
 If you're on Linux (or possibly Mac?) you can just clone this
-repository to your home directory with the name =.emacs.d=. Emacs
+repository to your home directory with the name =~/.emacs.d=. Emacs
 tries to find this config file by looking for =~/.emacs.d/init.el=, so
 just make sure that this is at your home directory and with the
 correct name.
 
-Windows is weird. My recommendation is to install Emacs and run it
-without this configuration. Once you're inside, run =find-file= (=C-x
-C-f=) and type =~/.emacs.d/init.el=. Emacs knows where it /thinks/
-your home directory is on Windows, and it's almost always in a weird
-spot. I've seen it end up on the Desktop or in the AppData folder, and
-this is the easiest way to find where it is. Once you find the
-location, /then/ clone down this repo, again as =.emacs.d=, and
-everything should be good to go!
+Windows takes a little more work. My recommendation is to install
+Emacs and run it without this configuration. Once you're inside, run
+=find-file= (=C-x C-f=) and type =~/.emacs.d/init.el=. Emacs knows
+where it /thinks/ your home directory is on Windows, and it's almost
+always in a weird spot. I've seen it end up on the Desktop or in the
+AppData folder, and this is the easiest way to find where it is. Once
+you find the location, /then/ clone down this repo, again as
+=.emacs.d=, and everything should be good to go!
 ** What Next?
 I recommend skimming through this README to see the code and what's
 going on, but if not, you can hit the ground running with =C-x C-f= to
