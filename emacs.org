@@ -309,5 +309,5 @@ here it's turned off.
 ** Simplify Yes and No Prompts
 Some prompts ask for "Yes/No" and this just shortens that to "y/n".
 #+BEGIN_SRC emacs-lisp
-  (defalias 'yes-or-no-p 'y-or-no-p)
+  (defalias 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
