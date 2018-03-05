@@ -135,7 +135,7 @@ If you want to disable this and use the default bindings, change the
 =keybindings= variable in the [[#introduction][introduction]].
 
 #+BEGIN_SRC emacs-lisp
-  (when (equalp keybindings "modern")
+  (when (equal keybindings "modern")
     (cua-mode))
 #+END_SRC
 * Vim Keybindings: Evil Mode
@@ -146,7 +146,7 @@ note, however, that you won't be able to use the =:= commands. Use
 
 #+BEGIN_SRC emacs-lisp
   (use-package evil
-    :if (equalp keybindings "vim")
+    :if (equal keybindings "vim")
     :ensure t
     :init (evil-mode 1))
 #+END_SRC
@@ -229,7 +229,7 @@ when you are using Evil mode.
 
 #+BEGIN_SRC emacs-lisp
   (use-package paredit
-    :if (and use-paredit (not (equalp keybindings "vim")))
+    :if (and use-paredit (not (equal keybindings "vim")))
     :requires hydra
     :ensure t
     :hook (scheme-mode . enable-paredit-mode)
@@ -257,7 +257,7 @@ disabled when using Vim-style keybindings.
 
 #+BEGIN_SRC emacs-lisp
   (use-package expand-region
-    :if (not (equalp keybindings "vim"))
+    :if (not (equal keybindings "vim"))
     :ensure t
     :config
     (global-set-key (kbd "M-i") 'er/expand-region))
