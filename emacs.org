@@ -46,22 +46,26 @@ Examples (and /really/ useful commands):
 (*) It's =M-= because 35 years ago it was called the "Meta" key. You
 see a lot of this stuff in Emacs.
 ** Installation
-Firstly, follow the installation instructions for Emacs found [[https://www.gnu.org/software/emacs/download.html][here]].
+Firstly, follow the installation instructions for Emacs found
+[[https://www.gnu.org/software/emacs/download.html][here]]. Then, install this config as described below. Launch the Emacs
+binary you downloaded (found in =bin/emacs.exe=), and wait for the
+initial setup to complete (it may take a moment). Subsequent launches
+will take far less time.
 
-If you're on Linux (or possibly Mac?) you can just clone this
-repository to your home directory with the name =~/.emacs.d=. Emacs
-tries to find this config file by looking for =~/.emacs.d/init.el=, so
-just make sure that this is at your home directory and with the
-correct name.
+*** Linux & Mac
+Simply clone this repository to your home directory with the name
+=~/.emacs.d=. Emacs tries to find this config file by looking for
+=~/.emacs.d/init.el=, so just make sure that this is at your home
+directory and with the correct name.
+*** Windows
+Clone the repository and run =win-install.cmd= by double-clicking on
+it. This copies this configuration to the directory Emacs expects it
+to be. When you want to uninstall, run =win-uninstall.cmd= and it will
+delete the extra copy of the folder.
 
-Windows takes a little more work. My recommendation is to install
-Emacs and run it without this configuration. Once you're inside, run
-=find-file= (=C-x C-f=) and type =~/.emacs.d/init.el=. Emacs knows
-where it /thinks/ your home directory is on Windows, and it's almost
-always in a weird spot. I've seen it end up on the Desktop or in the
-AppData folder, and this is the easiest way to find where it is. Once
-you find the location, /then/ clone down this repo, again as
-=.emacs.d=, and everything should be good to go!
+I tried making an alias instead of a full copy of the configuration,
+but Windows seems to have that locked behind admin rights. Any
+suggestions on how to improve this are welcome.
 ** What Next?
 I recommend skimming through this README to see the code and what's
 going on, but if not, you can hit the ground running with =C-x C-f= to
