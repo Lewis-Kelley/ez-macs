@@ -151,7 +151,6 @@ note, however, that you won't be able to use the =:= commands. Use
     :init (evil-mode 1))
 #+END_SRC
 * Scheme Support
-** Syntax Coloring: Scheme Mode
 This tells Emacs to open any files ending in =.ss= as Scheme
 files. Otherwise, it would just try to guess what kind of file it
 was.
@@ -159,22 +158,11 @@ was.
 #+BEGIN_SRC emacs-lisp
   (setq auto-mode-alist (cons '("\\.ss" . scheme-mode) auto-mode-alist))
 #+END_SRC
-** Scheme Evaluation: Geiser Mode
-[[https://github.com/jaor/geiser][Geiser mode]] allows for quick and easy execution of arbitrary blocks of
-Scheme code without having to switch to a REPL and load up a file. A
-few notable keybindings:
 
-| Evaluate Expression Before Point | C-x C-e   |
-| Open REPL                        | C-c C-z   |
-| Evaluate Buffer                  | C-c C-b   |
-| Macro Expand Region              | C-c C-m r |
+Next, we tell Emacs what scheme executable to use:
 
 #+BEGIN_SRC emacs-lisp
-  (use-package geiser
-    :ensure t
-    :custom
-    (geiser-active-implementations '(chez racket))
-    (geiser-default-implementation 'chez))
+  (setq scheme-program-name "petite")
 #+END_SRC
 * Git in Emacs: Magit
 [[https://magit.vc/][Magit]] is what's known as a Git porcelain in Emacs. This means that
