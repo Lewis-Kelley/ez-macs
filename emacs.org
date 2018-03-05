@@ -166,6 +166,21 @@ Next, we tell Emacs what scheme executable to use:
 #+BEGIN_SRC emacs-lisp
   (setq scheme-program-name "petite")
 #+END_SRC
+
+To start scheming, press =C-x C-e= in the scheme file to automatically
+start up a REPL and evaluate the previous expression.
+
+#+BEGIN_SRC emacs-lisp
+  (defun ez/start-repl-and-eval ()
+    (interactive)
+    (run-scheme scheme-program-name)
+    (split-window-below)
+    (previous-buffer)
+    (scheme-send-last-sexp))
+
+  (add-hook 'scheme-mode-hook
+            (lambda () (local-set-key (kbd "C-x C-e") 'ez/start-repl-and-eval)))
+#+END_SRC
 * Git in Emacs: Magit
 [[https://magit.vc/][Magit]] is what's known as a Git porcelain in Emacs. This means that
 everything you can do in the command line Git, you can do (likely
