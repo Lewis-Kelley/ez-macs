@@ -46,26 +46,42 @@ Examples (and /really/ useful commands):
 (*) It's =M-= because 35 years ago it was called the "Meta" key. You
 see a lot of this stuff in Emacs.
 ** Installation
-Firstly, follow the installation instructions for Emacs found
-[[https://www.gnu.org/software/emacs/download.html][here]]. Then, install this config as described below. Launch the Emacs
-binary you downloaded (found in =bin/emacs.exe=), and wait for the
-initial setup to complete (it may take a moment). Subsequent launches
-will take far less time.
-
-*** Linux & Mac
-Simply clone this repository to your home directory with the name
-=~/.emacs.d=. Emacs tries to find this config file by looking for
-=~/.emacs.d/init.el=, so just make sure that this is at your home
-directory and with the correct name.
 *** Windows
+First, download the latest Windows binary from [[http://mirror.keystealth.org/gnu/emacs/windows/emacs-25.3_1-x86_64.zip][here]] (currently, this
+is linked to Emacs 25.3). The folder contains lots of smaller
+executables, but the one you will be launching (and should probably
+make a taskbar shortcut to) is =bin/runemacs.exe=.
+
 Clone the repository and run =win-install.cmd= by double-clicking on
 it. This copies this configuration to the directory Emacs expects it
 to be. When you want to uninstall, run =win-uninstall.cmd= and it will
 delete the extra copy of the folder.
 
-I tried making an alias instead of a full copy of the configuration,
+NOTE: Since this creates a /copy/ of the config, you will need to edit
+that copy if you wish to make any changes after installation. The
+easiest way to do this is =C-x C-f ~/.emacs.d/emacs.org=.
+
+Finally, launch Emacs using =runemacs.exe=. The first run after
+installing the config will take some time as the packages install, but
+subsequent runs will launch must faster.
+
+(I tried making an alias instead of a full copy of the configuration,
 but Windows seems to have that locked behind admin rights. Any
-suggestions on how to improve this are welcome.
+suggestions on how to improve this are welcome.)
+*** MacOS
+First, download and install the latest MacOS binary from [[https://emacsformacosx.com/][here]] (I know
+the site looks fishy, but it's legitimate).
+
+Next, simply clone this repository to your home directory with the
+name =~/.emacs.d= (where =~= is =/home/<user>=) so that =init.el= is
+located at =~/.emacs.d/init.el=.
+*** Linux
+First, use your local package manager to install Emacs (things like
+=apt-install emacs= or =emerge emacs= will do nicely).
+
+Next, simply clone this repository to your home directory with the
+name =~/.emacs.d= (where =~= is =/home/<user>=) so that =init.el= is
+located at =~/.emacs.d/init.el=.
 ** What Next?
 I recommend skimming through this README to see the code and what's
 going on, but if not, you can hit the ground running with =C-x C-f= to
