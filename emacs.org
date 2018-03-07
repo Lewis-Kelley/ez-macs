@@ -221,7 +221,10 @@ repository, and press =?= to list out all that you can do.
   (use-package magit
     :ensure t
     :init
-    (global-set-key (kbd "M-g") 'magit-status))
+    (global-set-key (kbd "M-g") 'magit-status)
+    :catch
+    (lambda (keyword err)
+      (message "You don't have git installed!")))
 #+END_SRC
 * Helpful Keybindings: Hydra
 To quote the [[https://github.com/abo-abo/hydra][Hydra]] documentation:
