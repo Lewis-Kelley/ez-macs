@@ -268,7 +268,9 @@ when you are using Evil mode.
     :if (and use-paredit (not (equal keybindings "vim")))
     :requires hydra
     :ensure t
-    :hook (scheme-mode . enable-paredit-mode)
+    :hook
+    (scheme-mode . enable-paredit-mode)
+    (inferior-scheme-mode . enable-paredit-mode)
     :config
     (defhydra hydra-paredit ()
       ("f" paredit-forward  "Forward")
