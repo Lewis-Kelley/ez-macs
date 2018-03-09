@@ -72,16 +72,16 @@ suggestions on how to improve this are welcome.)
 First, download and install the latest MacOS binary from [[https://emacsformacosx.com/][here]] (I know
 the site looks fishy, but it's legitimate).
 
-Next, simply clone this repository to your home directory with the
-name =~/.emacs.d= (where =~= is =/home/<user>=) so that =init.el= is
-located at =~/.emacs.d/init.el=.
+Next, simply clone this repository to your home directory with: =git
+clone https://github.com/Lewis-Kelley/ez-macs.git ~/.emacs.d=. If
+there's already a directory there with the same name, delete it.
 *** Linux
 First, use your local package manager to install Emacs (things like
 =apt-install emacs= or =emerge emacs= will do nicely).
 
-Next, simply clone this repository to your home directory with the
-name =~/.emacs.d= (where =~= is =/home/<user>=) so that =init.el= is
-located at =~/.emacs.d/init.el=.
+Next, simply clone this repository to your home directory with: =git
+clone https://github.com/Lewis-Kelley/ez-macs.git ~/.emacs.d=. If
+there's already a directory there with the same name, delete it.
 *** Troubleshooting
 **** Searching for program: No such file or directory, git
 You don't have git installed. You really should, and I'd recommend
