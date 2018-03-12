@@ -63,7 +63,7 @@ easiest way to do this is =C-x C-f ~/.emacs.d/emacs.org=.
 
 Finally, launch Emacs using =runemacs.exe=. The first run after
 installing the config will take some time as the packages install, but
-subsequent runs will launch must faster.
+subsequent runs will launch much faster.
 
 (I tried making an alias instead of a full copy of the configuration,
 but Windows seems to have that locked behind admin rights. Any
