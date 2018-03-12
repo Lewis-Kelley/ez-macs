@@ -196,7 +196,9 @@ Next, we tell Emacs what scheme executable to use:
 #+END_SRC
 
 To start scheming, press =C-x C-e= in the scheme file to automatically
-start up a REPL and evaluate the previous expression.
+start up a REPL and evaluate the previous expression. Note that while
+you're in the REPL, you can use =C-c C-l= to quickly load a Scheme
+file!
 
 #+BEGIN_SRC emacs-lisp
   (defun ez/start-repl-and-eval ()
