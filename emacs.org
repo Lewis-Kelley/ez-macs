@@ -47,41 +47,56 @@ Examples (and /really/ useful commands):
 see a lot of this stuff in Emacs.
 ** Installation
 *** Windows
-First, download the latest Windows binary from [[http://mirror.keystealth.org/gnu/emacs/windows/emacs-25.3_1-x86_64.zip][here]] (currently, this
-is linked to Emacs 25.3). The folder contains lots of smaller
-executables, but the one you will be launching (and should probably
-make a taskbar shortcut to) is =bin/runemacs.exe=.
+1. If you are using this for Scheme development, download the =petite=
+   executable from [[https://www.scheme.com/download/pcsv84.exe][here]] and run the installer.
+2. Download or clone this repository (there's a big green button up
+   above).
+3. Extract this repo's contents. This holds the /config/ file for
+   Emacs, not Emacs itself.
+4. Run =win-install.cmd= by double-clicking on it. This copies this
+   configuration to the directory Emacs expects it to be.
+   - When you want to uninstall, run =win-uninstall.cmd= and it will
+     delete the extra copy of the folder.
+5. Download the latest Windows Emacs binary from [[http://mirror.keystealth.org/gnu/emacs/windows/emacs-25.3_1-x86_64.zip][here]] (currently, this
+   is linked to Emacs 25.3). /Now/ this is the actual Emacs program.
+6. Launch Emacs using =bin/runemacs.exe= from the Emacs folder.
+   - The first launch will take some time as it installs all the
+     packages. Just let it run (even if it doesn't appear to be doing
+     anything).
+   - Subsequent launches will take less time.
+7. In the future, continue to run =runemacs.exe=. You should probably
+   pin this executable to your taskbar.
 
-Clone the repository and run =win-install.cmd= by double-clicking on
-it. This copies this configuration to the directory Emacs expects it
-to be. When you want to uninstall, run =win-uninstall.cmd= and it will
-delete the extra copy of the folder.
-
-NOTE: Since this creates a /copy/ of the config, you will need to edit
-that copy if you wish to make any changes after installation. The
-easiest way to do this is =C-x C-f ~/.emacs.d/emacs.org=.
-
-Finally, launch Emacs using =runemacs.exe=. The first run after
-installing the config will take some time as the packages install, but
-subsequent runs will launch much faster.
-
-(I tried making an alias instead of a full copy of the configuration,
-but Windows seems to have that locked behind admin rights. Any
-suggestions on how to improve this are welcome.)
+NOTE: Since =win-install.cmd= creates a /copy/ of the config, you will
+need to edit that copy if you wish to make any changes after
+installation. The easiest way to do this is =C-x C-f
+~/.emacs.d/emacs.org=.
 *** MacOS
-First, download and install the latest MacOS binary from [[https://emacsformacosx.com/][here]] (I know
-the site looks fishy, but it's legitimate).
-
-Next, simply clone this repository to your home directory with: =git
-clone https://github.com/Lewis-Kelley/ez-macs.git ~/.emacs.d=. If
-there's already a directory there with the same name, delete it.
+1. If you are using this for Scheme development, download the =petite=
+   executable from [[https://www.scheme.com/download/pcsv8.4-i3osx.tar.gz][here]]. Navigate to the downloaded directory and run:
+   - =./configure=
+   - =make=
+   - =sudo make install=
+2. Clone this repository to your home directory with: =git
+   clone https://github.com/Lewis-Kelley/ez-macs.git ~/.emacs.d=.
+3. Download and install the latest MacOS binary from [[https://emacsformacosx.com/][here]] (I know the
+   site looks fishy, but it's legitimate).
+4. Run Emacs from a terminal using =emacs=. (There may also be
+   something you can double-click to run. I don't know.)
 *** Linux
-First, use your local package manager to install Emacs (things like
-=apt-install emacs= or =emerge emacs= will do nicely).
-
-Next, simply clone this repository to your home directory with: =git
-clone https://github.com/Lewis-Kelley/ez-macs.git ~/.emacs.d=. If
-there's already a directory there with the same name, delete it.
+1. If you are using this for Scheme development, install =petite=
+   using your package manager. If that doesn't work, instead download
+   the =petite= executable from [[https://www.scheme.com/download/pcsv8.4-i3le.tar.gz][here]]. Navigate to the downloaded
+   directory and run:
+   - =./configure=
+   - =make=
+   - =sudo make install=
+2. Clone this repository to your home directory with: =git
+   clone https://github.com/Lewis-Kelley/ez-macs.git ~/.emacs.d=.
+3. Install Emacs using your package manager (something like =sudo
+   apt-get install emacs= should work).
+4. Run Emacs from a terminal using =emacs=. (There may also be
+   something you can double-click to run. I don't know.)
 *** Troubleshooting
 **** Searching for program: No such file or directory, petite
 You don't have petite scheme installed. If you're using some other
