@@ -83,10 +83,6 @@ Next, simply clone this repository to your home directory with: =git
 clone https://github.com/Lewis-Kelley/ez-macs.git ~/.emacs.d=. If
 there's already a directory there with the same name, delete it.
 *** Troubleshooting
-**** Searching for program: No such file or directory, git
-You don't have git installed. You really should, and I'd recommend
-just installing it now. If you don't, insert the line =:disabled t= to
-the [[#git-in-emacs-magit][Magit]] block below between =:ensure t= and =:init=.
 **** Searching for program: No such file or directory, petite
 You don't have petite scheme installed. If you're using some other
 scheme version, you should change the line in [[#scheme-support][Scheme Support]] to match.
@@ -211,22 +207,8 @@ file!
   (add-hook 'scheme-mode-hook
             (lambda () (local-set-key (kbd "C-x C-e") 'ez/start-repl-and-eval)))
 #+END_SRC
-* Git in Emacs: Magit
-[[https://magit.vc/][Magit]] is what's known as a Git porcelain in Emacs. This means that
-everything you can do in the command line Git, you can do (likely
-better) in Magit.
 
-To get started, type =M-g= when you have a file open in a Git
-repository, and press =?= to list out all that you can do.
 
-#+BEGIN_SRC emacs-lisp
-  (use-package magit
-    :ensure t
-    :init
-    (global-set-key (kbd "M-g") 'magit-status)
-    :catch
-    (lambda (keyword err)
-      (message "You don't have git installed!")))
 #+END_SRC
 * Helpful Keybindings: Hydra
 To quote the [[https://github.com/abo-abo/hydra][Hydra]] documentation:
