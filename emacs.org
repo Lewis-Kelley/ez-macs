@@ -212,18 +212,25 @@ you're in the REPL, you can use =C-c C-l= to quickly load a Scheme
 file!
 
 #+BEGIN_SRC emacs-lisp
-  (defun ez/start-repl-and-eval ()
-    (interactive)
+  (defun ez/-start-repl-below ()
     (run-scheme scheme-program-name)
     (split-window-below)
-    (previous-buffer)
+    (previous-buffer))
+
+  (defun ez/start-repl-and-eval-sexp ()
+    (interactive)
+    (ez/-start-repl-below)
     (scheme-send-last-sexp))
 
+  (defun ez/start-repl-and-eval-definition ()
+    (interactive)
+    (ez/-start-repl-below)
+    (scheme-send-definition))
+
   (add-hook 'scheme-mode-hook
-            (lambda () (local-set-key (kbd "C-x C-e") 'ez/start-repl-and-eval)))
-#+END_SRC
-
-
+            (lambda ()
+              (local-set-key (kbd "C-x C-e") 'ez/start-repl-and-eval-sexp)
+              (local-set-key (kbd "C-c C-e") 'ez/start-repl-and-eval-definition)))
 #+END_SRC
 * Helpful Keybindings: Hydra
 To quote the [[https://github.com/abo-abo/hydra][Hydra]] documentation:
@@ -307,8 +314,9 @@ easier (and prettier).
 #+BEGIN_SRC emacs-lisp
   (use-package rainbow-delimiters
     :ensure t
-    :config
-    (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+    :hook
+    (prog-mode . rainbow-delimiters-mode)
+    (inferior-scheme-mode . rainbow-delimiters-mode))
 #+END_SRC
 
 Other miscellaneous parentheses stuff:
