@@ -177,7 +177,8 @@ If you want to disable this and use the default bindings, change the
 
 #+BEGIN_SRC emacs-lisp
   (when (equal keybindings "modern")
-    (cua-mode))
+    (cua-mode)
+    (global-set-key (kbd "C-s") #'save-buffer))
 #+END_SRC
 * Vim Keybindings: Evil Mode
 [[https://github.com/emacs-evil/evil][Evil]] mode, or the "Extensible VI Layer for Emacs" makes Emacs control
