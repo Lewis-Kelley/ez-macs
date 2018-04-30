@@ -293,6 +293,19 @@ when you are using Evil mode.
       ("x" nil "Quit"))
     (define-key paredit-mode-map (kbd "M-s") 'hydra-paredit/body))
 #+END_SRC
+* Fancy Undo: undo-tree
+[[https://www.emacswiki.org/emacs/UndoTree][Undo Tree]] allows for some super-fancy undo and redo capabilities. It's
+currently bound to =C-x u=. Once you try it, you'll see a little
+tree representing your edit history. You can navigate it with the
+arrow keys and =q= to exit and return to your editing.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package undo-tree
+    :ensure t
+    :config
+    (global-undo-tree-mode)
+    (global-set-key (kbd "C-x u") 'undo-tree-visualize))
+#+END_SRC
 * Select Whole Expression: expand-region
 [[https://github.com/magnars/expand-region.el][expand-region]] allows you to easily select a whole expression at a
 time. Try it out in a Scheme file with =M-i=!
